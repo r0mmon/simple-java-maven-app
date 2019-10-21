@@ -1,14 +1,11 @@
 pipeline {
-  agent {
-    docker {
-      image 'maven:3-apline'
-      args '-v /root/.m2:/root/.m2'
-    }
-  }
+  agent any
   stages {
     stage('Build') {
       steps {
-        sh 'mvn -B -DskeipTests clean package'
+        container('maven:3-apline') {
+          sh 'mvn -B -DskeipTests clean package'
+        }
       }
     }
   }
