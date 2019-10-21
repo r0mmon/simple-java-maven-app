@@ -27,8 +27,10 @@ pipeline {
     }
     stage('Deliver') {
         steps {
+        container('maven') {
             sh './jenkins/scripts/deliver.sh'
         }
+      }
     }
   }
 }
