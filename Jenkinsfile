@@ -1,9 +1,11 @@
 pipeline {
-  agent any
+  agent  {
+    label "jenkins-maven"
+  }
   stages {
     stage('Build') {
       steps {
-        container('maven:3-apline') {
+        container('maven') {
           sh 'mvn -B -DskeipTests clean package'
         }
       }
